@@ -156,13 +156,15 @@
   padding: var(--space-lg);
   transform: translateY(-100%);
   opacity: 0;
-  transition: all var(--transition-base);
+  transition: all var(--transition-base), visibility var(--transition-base);
   z-index: var(--z-sticky);
+  visibility: hidden;
 }
 
 .mobileMenuOpen {
   transform: translateY(0);
   opacity: 1;
+  visibility: visible;
 }
 
 .mobileLinks {
