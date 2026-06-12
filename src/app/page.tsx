@@ -1,66 +1,75 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import AnnouncementBar from '@/components/AnnouncementBar';
+import HeroBanner from '@/components/HeroBanner';
+import CategoryGrid from '@/components/CategoryGrid';
+import PromoBanner from '@/components/PromoBanner';
+import ProductGrid from '@/components/ProductGrid';
+import CollectionCards from '@/components/CollectionCards';
+import Newsletter from '@/components/Newsletter';
+import Footer from '@/components/Footer';
+import { products } from '@/lib/data';
 
-export default function Home() {
+export default function HomePage() {
+  const newArrivals = products.filter(p => p.is_new_arrival);
+  const bestSellers = products.filter(p => p.is_best_seller);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <AnnouncementBar />
+      <Navbar />
+      
+      <main>
+        {/* Hero Section */}
+        <HeroBanner />
+
+        {/* Categories */}
+        <CategoryGrid />
+
+        {/* Promo Banners */}
+        <PromoBanner />
+
+        {/* New Arrivals */}
+        <section className="section" id="new-arrivals-section">
+          <div className="container">
+            <div className="section-header">
+              <div>
+                <h2 className="section-title">New Arrivals</h2>
+                <p className="section-subtitle">Fresh styles, just in</p>
+              </div>
+              <Link href="/shop?filter=new" className="view-all-link">
+                View All <ChevronRight size={16} />
+              </Link>
+            </div>
+            <ProductGrid products={newArrivals} />
+          </div>
+        </section>
+
+        {/* Collections */}
+        <CollectionCards />
+
+        {/* Best Sellers */}
+        <section className="section" id="best-sellers-section">
+          <div className="container">
+            <div className="section-header">
+              <div>
+                <h2 className="section-title">Best Sellers</h2>
+                <p className="section-subtitle">Most loved by our customers</p>
+              </div>
+              <Link href="/shop?filter=bestseller" className="view-all-link">
+                View All <ChevronRight size={16} />
+              </Link>
+            </div>
+            <ProductGrid products={bestSellers} />
+          </div>
+        </section>
+
+        {/* Newsletter */}
+        <Newsletter />
       </main>
-    </div>
+
+      <Footer />
+    </>
   );
 }

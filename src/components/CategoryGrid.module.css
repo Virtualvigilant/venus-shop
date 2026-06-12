@@ -1,0 +1,78 @@
+.section {
+  background: var(--color-surface);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-xl);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: transform var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.imageWrapper {
+  width: 110px;
+  height: 110px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 3px solid var(--color-border-light);
+  transition: all var(--transition-base);
+  background: var(--neutral-50);
+}
+
+.card:hover .imageWrapper {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-purple);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .image {
+  transform: scale(1.1);
+}
+
+.name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.card:hover .name {
+  color: var(--primary-600);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .imageWrapper {
+    width: 85px;
+    height: 85px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

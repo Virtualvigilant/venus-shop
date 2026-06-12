@@ -1,0 +1,239 @@
+'use client';
+
+import { useState } from 'react';
+import { useParams } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { MessageCircle, Heart, ChevronRight, Check, Share2 } from 'lucide-react';
+import Navbar from '@/components/Navbar';
+import AnnouncementBar from '@/components/AnnouncementBar';
+import Footer from '@/components/Footer';
+import ProductGrid from '@/components/ProductGrid';
+import WishlistButton from '@/components/WishlistButton';
+import { products, formatPrice, getDiscountPercentage } from '@/lib/data';
+import styles from './product.module.css';
+
+export default function ProductPage() {
+  const params = useParams();
+  const product = products.find(p => p.id === params.id);
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
+  const [activeTab, setActiveTab] = useState('description');
+
+  if (!product) {
+    return (
+      <>
+        <AnnouncementBar />
+        <Navbar />
+        <main className={styles.main}>
+          <div className="container">
+            <div className={styles.notFound}>
+              <h1>Product Not Found</h1>
+              <p>The product you&apos;re looking for doesn&apos;t exist.</p>
+              <Link href="/shop" className="btn btn-primary">Back to Shop</Link>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  const hasDiscount = product.original_price && product.original_price > product.price;
+  const discount = hasDiscount ? getDiscountPercentage(product.price, product.original_price!) : 0;
+  const relatedProducts = products.filter(p => p.category_id === product.category_id && p.id !== product.id).slice(0, 4);
+
+  const whatsappMessage = encodeURIComponent(
+    `Hi! I'm interested in ordering the "${product.name}" (${formatPrice(product.price)})${selectedSize ? ` in size ${selectedSize}` : ''}${selectedColor ? `, color: ${selectedColor}` : ''}. Is it available?`
+  );
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '2341234567890'}?text=${whatsappMessage}`;
+
+  return (
+    <>
+      <AnnouncementBar />
+      <Navbar />
+
+      <main className={styles.main}>
+        <div className="container">
+          {/* Breadcrumbs */}
+          <nav className={styles.breadcrumbs}>
+            <Link href="/">Home</Link>
+            <ChevronRight size={14} />
+            <Link href="/shop">Shop</Link>
+            <ChevronRight size={14} />
+            <span>{product.name}</span>
+          </nav>
+
+          {/* Product Detail */}
+          <div className={styles.productLayout}>
+            {/* Image Gallery */}
+            <div className={styles.gallery}>
+              <div className={styles.mainImage}>
+                {hasDiscount && (
+                  <span className="badge badge-sale" style={{ position: 'absolute', top: 16, left: 16, zIndex: 2 }}>
+                    -{discount}%
+                  </span>
+                )}
+                {product.is_new_arrival && (
+                  <span className="badge badge-new" style={{ position: 'absolute', top: hasDiscount ? 48 : 16, left: 16, zIndex: 2 }}>
+                    New
+                  </span>
+                )}
+                <Image
+                  src={product.images[0]}
+                  alt={product.name}
+                  width={600}
+                  height={700}
+                  className={styles.image}
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div className={styles.info}>
+              <span className={styles.category}>
+                {product.category_id === '1' ? 'Dresses' :
+                 product.category_id === '2' ? 'Tops' :
+                 product.category_id === '3' ? 'Bottoms' :
+                 product.category_id === '4' ? 'Shoes' :
+                 product.category_id === '5' ? 'Accessories' : 'Sale'}
+              </span>
+              <h1 className={styles.productName}>{product.name}</h1>
+
+              <div className={styles.priceSection}>
+                <span className={styles.price}>{formatPrice(product.price)}</span>
+                {hasDiscount && (
+                  <>
+                    <span className={styles.originalPrice}>{formatPrice(product.original_price!)}</span>
+                    <span className={styles.saveBadge}>Save {discount}%</span>
+                  </>
+                )}
+              </div>
+
+              <p className={styles.description}>{product.description}</p>
+
+              {/* Size Selector */}
+              {product.sizes.length > 0 && product.sizes[0] !== 'One Size' && (
+                <div className={styles.optionGroup}>
+                  <label className={styles.optionLabel}>
+                    Size {selectedSize && <span className={styles.selected}>— {selectedSize}</span>}
+                  </label>
+                  <div className={styles.sizes}>
+                    {product.sizes.map(size => (
+                      <button
+                        key={size}
+                        className={`${styles.sizeBtn} ${selectedSize === size ? styles.sizeActive : ''}`}
+                        onClick={() => setSelectedSize(size)}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Color Selector */}
+              {product.colors.length > 0 && (
+                <div className={styles.optionGroup}>
+                  <label className={styles.optionLabel}>
+                    Color {selectedColor && <span className={styles.selected}>— {selectedColor}</span>}
+                  </label>
+                  <div className={styles.colors}>
+                    {product.colors.map(color => (
+                      <button
+                        key={color}
+                        className={`${styles.colorBtn} ${selectedColor === color ? styles.colorActive : ''}`}
+                        onClick={() => setSelectedColor(color)}
+                      >
+                        {selectedColor === color && <Check size={12} />}
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Actions */}
+              <div className={styles.actions}>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-whatsapp btn-lg"
+                  id="whatsapp-order-button"
+                  style={{ flex: 1 }}
+                >
+                  <MessageCircle size={20} />
+                  Order via WhatsApp
+                </a>
+                <WishlistButton productId={product.id} />
+                <button className={styles.shareBtn} aria-label="Share">
+                  <Share2 size={18} />
+                </button>
+              </div>
+
+              <div className={styles.stockInfo}>
+                {product.in_stock ? (
+                  <span className={styles.inStock}>
+                    <Check size={14} /> In Stock
+                  </span>
+                ) : (
+                  <span className={styles.outOfStock}>Out of Stock</span>
+                )}
+              </div>
+
+              {/* Tabs */}
+              <div className={styles.tabs}>
+                <button
+                  className={`${styles.tab} ${activeTab === 'description' ? styles.tabActive : ''}`}
+                  onClick={() => setActiveTab('description')}
+                >
+                  Details
+                </button>
+                <button
+                  className={`${styles.tab} ${activeTab === 'sizing' ? styles.tabActive : ''}`}
+                  onClick={() => setActiveTab('sizing')}
+                >
+                  Sizing
+                </button>
+                <button
+                  className={`${styles.tab} ${activeTab === 'care' ? styles.tabActive : ''}`}
+                  onClick={() => setActiveTab('care')}
+                >
+                  Care
+                </button>
+              </div>
+              <div className={styles.tabContent}>
+                {activeTab === 'description' && (
+                  <p>{product.description}</p>
+                )}
+                {activeTab === 'sizing' && (
+                  <p>Please refer to our sizing guide or contact us on WhatsApp for measurements. We&apos;re happy to help you find the perfect fit!</p>
+                )}
+                {activeTab === 'care' && (
+                  <p>Machine wash cold with like colors. Tumble dry low. Do not bleach. Iron on low heat if needed. See garment label for specific care instructions.</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Related Products */}
+          {relatedProducts.length > 0 && (
+            <section className="section" id="related-products">
+              <div className="section-header">
+                <div>
+                  <h2 className="section-title">You May Also Like</h2>
+                  <p className="section-subtitle">Similar styles from this collection</p>
+                </div>
+              </div>
+              <ProductGrid products={relatedProducts} />
+            </section>
+          )}
+        </div>
+      </main>
+
+      <Footer />
+    </>
+  );
+}
