@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import AnnouncementBar from '@/components/AnnouncementBar';
 import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import FilterSidebar from '@/components/FilterSidebar';
@@ -66,7 +65,6 @@ export default function CategoryPage() {
   if (!category) {
     return (
       <>
-        <AnnouncementBar />
         <Navbar />
         <main className={styles.main}>
           <div className="container">
@@ -84,7 +82,6 @@ export default function CategoryPage() {
 
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
 
       <main className={styles.main}>

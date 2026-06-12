@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, Heart, ChevronRight, Check, Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import AnnouncementBar from '@/components/AnnouncementBar';
 import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import WishlistButton from '@/components/WishlistButton';
@@ -23,7 +22,6 @@ export default function ProductPage() {
   if (!product) {
     return (
       <>
-        <AnnouncementBar />
         <Navbar />
         <main className={styles.main}>
           <div className="container">
@@ -50,7 +48,6 @@ export default function ProductPage() {
 
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
 
       <main className={styles.main}>

@@ -3,7 +3,6 @@
 import { useMemo, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
-import AnnouncementBar from '@/components/AnnouncementBar';
 import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import FilterSidebar from '@/components/FilterSidebar';
@@ -170,7 +169,6 @@ function ShopPageContent() {
 export default function ShopPage() {
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
       <Suspense fallback={
         <main className={styles.main}>

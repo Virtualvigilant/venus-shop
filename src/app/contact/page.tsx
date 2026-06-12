@@ -57,7 +57,6 @@ const Twitter = ({ size = 24, className = '' }: { size?: number; className?: str
   </svg>
 );
 import Navbar from '@/components/Navbar';
-import AnnouncementBar from '@/components/AnnouncementBar';
 import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
 import styles from './contact.module.css';
@@ -121,7 +120,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
 
       <main className={styles.main}>

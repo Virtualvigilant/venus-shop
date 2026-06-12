@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import AnnouncementBar from '@/components/AnnouncementBar';
 import HeroBanner from '@/components/HeroBanner';
 import CategoryGrid from '@/components/CategoryGrid';
 import PromoBanner from '@/components/PromoBanner';
@@ -17,7 +16,6 @@ export default function HomePage() {
 
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
       
       <main>
