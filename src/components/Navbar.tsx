@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Heart, Menu, X, ShoppingBag } from 'lucide-react';
 import SearchModal from './SearchModal';
+import AnnouncementBar from './AnnouncementBar';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -34,14 +35,15 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
-        <div className={`container ${styles.navContent}`}>
-          {/* Logo */}
-          <Link href="/" className={styles.logo}>
-            <ShoppingBag className={styles.logoIcon} size={28} />
-            <span className={styles.logoText}>Venus</span>
-            <span className={styles.logoAccent}>Shop</span>
-          </Link>
+      <header className={styles.headerWrapper}>
+        <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
+          <div className={`container ${styles.navContent}`}>
+            {/* Logo */}
+            <Link href="/" className={styles.logo}>
+              <ShoppingBag className={styles.logoIcon} size={28} />
+              <span className={styles.logoText}>Venus</span>
+              <span className={styles.logoAccent}>Shop</span>
+            </Link>
 
           {/* Desktop Navigation */}
           <ul className={styles.navLinks}>
@@ -92,6 +94,8 @@ export default function Navbar() {
           </ul>
         </div>
       </nav>
+      <AnnouncementBar />
+    </header>
 
       {isSearchOpen && (
         <SearchModal onClose={() => setIsSearchOpen(false)} />

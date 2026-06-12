@@ -1,10 +1,16 @@
-.navbar {
+.headerWrapper {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: var(--navbar-height);
   z-index: var(--z-sticky);
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  height: var(--navbar-height);
+  width: 100%;
   transition: all var(--transition-base);
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
@@ -141,7 +147,7 @@
 .mobileMenu {
   display: none;
   position: fixed;
-  top: var(--navbar-height);
+  top: calc(var(--navbar-height) + 36px);
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.98);
