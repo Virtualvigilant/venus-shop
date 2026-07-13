@@ -45,7 +45,7 @@ export default function SearchModal({ onClose }: SearchModalProps) {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search for dresses, shoes, accessories..."
+            placeholder="Search ankara, oxford, carpets..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className={styles.searchInput}
@@ -111,7 +111,7 @@ export default function SearchModal({ onClose }: SearchModalProps) {
           <div className={styles.suggestions}>
             <p className={styles.suggestionsTitle}>Popular Searches</p>
             <div className={styles.suggestTags}>
-              {['Dresses', 'Blazer', 'Heels', 'Bags', 'New Arrivals'].map(tag => (
+              {['Ankara', 'Oxford', 'Doormat', 'Shuka', 'New Arrivals'].map(tag => (
                 <button
                   key={tag}
                   className={styles.suggestTag}

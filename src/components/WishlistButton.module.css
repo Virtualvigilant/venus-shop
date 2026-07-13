@@ -14,17 +14,17 @@
 }
 
 .btn:hover {
-  color: var(--rose-500);
+  color: var(--crimson-500);
   background: white;
   transform: scale(1.1);
   box-shadow: var(--shadow-md);
 }
 
 .btn.active {
-  color: var(--rose-500);
-  background: var(--rose-100);
+  color: var(--crimson-500);
+  background: var(--crimson-50);
 }
 
 .btn.active:hover {
-  background: var(--rose-100);
+  background: var(--crimson-100);
 }

@@ -40,11 +40,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className={styles.info}>
         <Link href={`/product/${product.id}`} className={styles.infoLink}>
           <span className={styles.category}>
-            {product.category_id === '1' ? 'Dresses' :
-             product.category_id === '2' ? 'Tops' :
-             product.category_id === '3' ? 'Bottoms' :
-             product.category_id === '4' ? 'Shoes' :
-             product.category_id === '5' ? 'Accessories' : 'Sale'}
+            {product.category_id === '1' ? 'Women' :
+             product.category_id === '2' ? 'Men' :
+             product.category_id === '3' ? 'Kids' :
+             product.category_id === '4' ? 'Accessories' :
+             product.category_id === '5' ? 'Home' : 'Sale'}
           </span>
           <h3 className={styles.name}>{product.name}</h3>
         </Link>

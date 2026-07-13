@@ -1,3 +1,80 @@
+/* Deal Header */
+.dealHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.dealTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.25rem 0.75rem;
+  background: var(--crimson-500);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: fit-content;
+  animation: countPulse 2s ease-in-out infinite;
+}
+
+.dealTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.timerGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.timerBlock {
+  background: var(--navy-800);
+  color: white;
+  padding: 0.3rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: center;
+}
+
+.timerSep {
+  font-weight: 700;
+  color: var(--navy-800);
+}
+
+@keyframes countPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Promo Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -9,7 +86,7 @@
   padding: var(--space-2xl);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  min-height: 200px;
+  min-height: 220px;
   display: flex;
   align-items: flex-end;
   transition: transform var(--transition-base);
@@ -30,28 +107,26 @@
   transform: scale(1.05);
 }
 
-.cardSale {
-  background: var(--gradient-primary);
-}
-
-.cardSale::before {
-  content: '';
+.cardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(102, 49, 219, 0.9) 0%, rgba(102, 49, 219, 0.3) 100%);
   z-index: 1;
+}
+
+.cardSale {
+  background: var(--navy-800);
+}
+
+.cardSale .cardOverlay {
+  background: linear-gradient(to top, rgba(15, 25, 35, 0.9) 0%, rgba(15, 25, 35, 0.4) 100%);
 }
 
 .cardNew {
-  background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+  background: var(--navy-700);
 }
 
-.cardNew::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(244, 114, 182, 0.7) 0%, rgba(244, 114, 182, 0.1) 100%);
-  z-index: 1;
+.cardNew .cardOverlay {
+  background: linear-gradient(to top, rgba(15, 25, 35, 0.85) 0%, rgba(15, 25, 35, 0.3) 100%);
 }
 
 .cardTrend {
@@ -64,15 +139,18 @@
   color: white;
 }
 
-.cardIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
-  display: flex;
+.cardBadge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
+  padding: 0.2rem 0.6rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   margin-bottom: var(--space-md);
 }
 
@@ -85,7 +163,7 @@
 
 .cardText {
   font-size: var(--text-sm);
-  opacity: 0.85;
+  opacity: 0.8;
   margin-bottom: var(--space-md);
 }
 
@@ -94,7 +172,8 @@
   align-items: center;
   gap: var(--space-xs);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   transition: gap var(--transition-fast);
 }
 
@@ -108,6 +187,6 @@
   }
 
   .card {
-    min-height: 160px;
+    min-height: 180px;
   }
 }

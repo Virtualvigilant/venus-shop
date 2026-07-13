@@ -91,7 +91,7 @@
 }
 
 .resultItem:hover {
-  background: var(--primary-50);
+  background: var(--neutral-100);
 }
 
 .resultImage {
@@ -118,8 +118,8 @@
 
 .resultPrice {
   font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--primary-600);
+  font-weight: 700;
+  color: var(--navy-800);
 }
 
 .resultArrow {
@@ -133,14 +133,16 @@
   padding: var(--space-md);
   margin-top: var(--space-md);
   font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--primary-600);
+  font-weight: 700;
+  color: var(--crimson-500);
   border-top: 1px solid var(--color-border-light);
   transition: color var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .viewAll:hover {
-  color: var(--primary-700);
+  color: var(--crimson-700);
 }
 
 .noResults {
@@ -187,8 +189,8 @@
 }
 
 .suggestTag:hover {
-  background: var(--primary-100);
-  color: var(--primary-700);
+  background: var(--navy-100);
+  color: var(--navy-700);
 }
 
 @media (max-width: 768px) {

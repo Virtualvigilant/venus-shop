@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Venus Shop — Discover Your Style",
-  description: "Explore the latest trends in women's fashion. Dresses, tops, shoes, accessories and more. Quality fabrics, trendy styles, affordable prices.",
-  keywords: ["fashion", "women's clothing", "dresses", "shoes", "accessories", "Venus Shop"],
+  title: "Wajose — Smart · Wear · Home",
+  description: "Curated fashion for the whole family, plus statement carpets and door mats — delivered across Kenya. Where style meets the warmth of home.",
+  keywords: ["Wajose", "Kenya fashion", "online shopping Kenya", "M-Pesa", "ankara", "carpets", "doormats", "women's fashion", "men's fashion", "kids fashion"],
   openGraph: {
-    title: "Venus Shop — Discover Your Style",
-    description: "Explore the latest trends in women's fashion at Venus Shop.",
+    title: "Wajose — Smart · Wear · Home",
+    description: "Curated fashion for the whole family, plus statement carpets and door mats — delivered across Kenya.",
     type: "website",
   },
 };

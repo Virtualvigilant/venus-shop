@@ -1,25 +1,26 @@
 /* ========================================
-   VENUS SHOP — Global Design System
+   WAJOSE — Global Design System
+   "Smart · Wear · Home"
    ======================================== */
 
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* ========================================
    CSS Custom Properties (Design Tokens)
    ======================================== */
 :root {
-  /* Primary Purple Palette */
-  --primary-50: #F2EEFC;
-  --primary-100: #E5DCFA;
-  --primary-200: #D0BCFC;
-  --primary-300: #B796FE;
-  --primary-400: #A981FF;
-  --primary-500: #7B45F0;
-  --primary-600: #6631DB;
-  --primary-700: #491AB1;
-  --primary-800: #34117E;
-  --primary-900: #200754;
+  /* Primary Navy Palette */
+  --navy-50: #f0f3f7;
+  --navy-100: #dce3ed;
+  --navy-200: #b8c6db;
+  --navy-300: #8da2c0;
+  --navy-400: #5f7ba0;
+  --navy-500: #3d5a80;
+  --navy-600: #2c4466;
+  --navy-700: #1e3150;
+  --navy-800: #142139;
+  --navy-900: #0f1923;
 
   /* Neutral Palette */
   --neutral-50: #fafafa;
@@ -34,31 +35,48 @@
   --neutral-900: #171717;
 
   /* Accent Colors */
-  --rose-500: #f43f5e;
-  --rose-100: #ffe4e6;
+  --crimson-50: #fff1f2;
+  --crimson-100: #ffe4e6;
+  --crimson-200: #fecdd3;
+  --crimson-300: #f9a8b5;
+  --crimson-400: #f06c81;
+  --crimson-500: #C8102E;
+  --crimson-600: #b00d27;
+  --crimson-700: #8c0a1f;
+  --crimson-800: #6d0818;
+  --crimson-900: #4a0510;
+
+  /* Warm Accent */
+  --warm-50: #fef9f0;
+  --warm-100: #fdf0d5;
+  --warm-200: #fbe0ab;
+  --warm-300: #f7c97a;
+  --warm-400: #f2ae45;
+  --warm-500: #e8981c;
+
+  /* Success / Emerald */
   --emerald-500: #10b981;
-  --amber-500: #f59e0b;
 
   /* Semantic Colors */
-  --color-bg: #fafafa;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #1a1a2e;
-  --color-text-secondary: #6b7280;
-  --color-text-muted: #9ca3af;
+  --color-text: #0f1923;
+  --color-text-secondary: #525252;
+  --color-text-muted: #a3a3a3;
   --color-border: #e5e7eb;
   --color-border-light: #f3f4f6;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-400) 50%, var(--primary-200) 100%);
-  --gradient-hero: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-500) 30%, var(--primary-300) 70%, var(--primary-100) 100%);
-  --gradient-card: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
-  --gradient-cta: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%);
-  --gradient-rose: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
-  --gradient-dark: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+  --gradient-dark: linear-gradient(135deg, #0f1923 0%, #1e3150 100%);
+  --gradient-navy: linear-gradient(135deg, #1e3150 0%, #2c4466 100%);
+  --gradient-hero: linear-gradient(135deg, #0f1923 0%, #1a2d44 50%, #2c4466 100%);
+  --gradient-crimson: linear-gradient(135deg, #C8102E 0%, #e8293f 100%);
+  --gradient-warm: linear-gradient(135deg, #fdf0d5 0%, #fef9f0 100%);
+  --gradient-card: linear-gradient(135deg, #f0f3f7 0%, #ffffff 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
 
   /* Typography */
-  --font-display: 'Fredoka', var(--font-body);
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Font Sizes */
@@ -97,8 +115,8 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-  --shadow-purple: 0 4px 14px 0 rgba(124, 58, 237, 0.25);
-  --shadow-purple-lg: 0 10px 25px -3px rgba(124, 58, 237, 0.3);
+  --shadow-crimson: 0 4px 14px 0 rgba(200, 16, 46, 0.25);
+  --shadow-crimson-lg: 0 10px 25px -3px rgba(200, 16, 46, 0.3);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,7 +133,9 @@
 
   /* Layout */
   --max-width: 1280px;
-  --navbar-height: 72px;
+  --navbar-height: 56px;
+  --topbar-height: 36px;
+  --announcement-height: 36px;
 }
 
 /* ========================================
@@ -209,7 +229,7 @@ input, textarea, select {
   font-size: var(--text-3xl);
   font-weight: 700;
   color: var(--color-text);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .section-subtitle {
@@ -224,12 +244,14 @@ input, textarea, select {
   gap: var(--space-sm);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--primary-600);
+  color: var(--crimson-500);
   transition: color var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .view-all-link:hover {
-  color: var(--primary-700);
+  color: var(--crimson-700);
 }
 
 .view-all-link svg {
@@ -249,22 +271,25 @@ input, textarea, select {
   justify-content: center;
   gap: var(--space-sm);
   padding: 0.75rem 1.75rem;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--text-sm);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   transition: all var(--transition-base);
   white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .btn-primary {
-  background: var(--gradient-cta);
+  background: var(--crimson-500);
   color: white;
-  box-shadow: var(--shadow-purple);
+  box-shadow: var(--shadow-crimson);
 }
 
 .btn-primary:hover {
+  background: var(--crimson-600);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-purple-lg);
+  box-shadow: var(--shadow-crimson-lg);
 }
 
 .btn-primary:active {
@@ -274,23 +299,22 @@ input, textarea, select {
 .btn-secondary {
   background: var(--color-surface);
   color: var(--color-text);
-  border: 1.5px solid var(--color-border);
+  border: 2px solid var(--color-text);
 }
 
 .btn-secondary:hover {
-  border-color: var(--primary-400);
-  color: var(--primary-600);
-  background: var(--primary-50);
+  background: var(--color-text);
+  color: white;
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--primary-600);
-  border: 1.5px solid var(--primary-600);
+  color: var(--navy-700);
+  border: 2px solid var(--navy-700);
 }
 
 .btn-outline:hover {
-  background: var(--primary-600);
+  background: var(--navy-700);
   color: white;
 }
 
@@ -301,8 +325,8 @@ input, textarea, select {
 }
 
 .btn-ghost:hover {
-  color: var(--primary-600);
-  background: var(--primary-50);
+  color: var(--crimson-500);
+  background: var(--crimson-50);
 }
 
 .btn-lg {
@@ -345,19 +369,19 @@ input, textarea, select {
   align-items: center;
   padding: 0.25rem 0.75rem;
   font-size: var(--text-xs);
-  font-weight: 600;
-  border-radius: var(--radius-full);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .badge-sale {
-  background: var(--gradient-rose);
+  background: var(--crimson-500);
   color: white;
 }
 
 .badge-new {
-  background: var(--gradient-primary);
+  background: var(--navy-800);
   color: white;
 }
 
@@ -438,6 +462,11 @@ input, textarea, select {
   to { transform: translateX(-50%); }
 }
 
+@keyframes countPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -494,8 +523,8 @@ input, textarea, select {
    Selection Styles
    ======================================== */
 ::selection {
-  background: var(--primary-200);
-  color: var(--primary-900);
+  background: var(--crimson-100);
+  color: var(--crimson-900);
 }
 
 /* ========================================
@@ -503,7 +532,8 @@ input, textarea, select {
    ======================================== */
 @media (max-width: 768px) {
   :root {
-    --navbar-height: 60px;
+    --navbar-height: 52px;
+    --topbar-height: 0px;
   }
 
   .container {

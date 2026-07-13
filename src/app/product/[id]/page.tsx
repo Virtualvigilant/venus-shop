@@ -44,7 +44,7 @@ export default function ProductPage() {
   const whatsappMessage = encodeURIComponent(
     `Hi! I'm interested in ordering the "${product.name}" (${formatPrice(product.price)})${selectedSize ? ` in size ${selectedSize}` : ''}${selectedColor ? `, color: ${selectedColor}` : ''}. Is it available?`
   );
-  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '2341234567890'}?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'}?text=${whatsappMessage}`;
 
   return (
     <>
@@ -90,11 +90,11 @@ export default function ProductPage() {
             {/* Product Info */}
             <div className={styles.info}>
               <span className={styles.category}>
-                {product.category_id === '1' ? 'Dresses' :
-                 product.category_id === '2' ? 'Tops' :
-                 product.category_id === '3' ? 'Bottoms' :
-                 product.category_id === '4' ? 'Shoes' :
-                 product.category_id === '5' ? 'Accessories' : 'Sale'}
+                {product.category_id === '1' ? 'Women' :
+                 product.category_id === '2' ? 'Men' :
+                 product.category_id === '3' ? 'Kids' :
+                 product.category_id === '4' ? 'Accessories' :
+                 product.category_id === '5' ? 'Home' : 'Sale'}
               </span>
               <h1 className={styles.productName}>{product.name}</h1>
 

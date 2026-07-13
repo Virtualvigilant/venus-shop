@@ -1,37 +1,40 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
 import { categories } from '@/lib/data';
 import styles from './CategoryGrid.module.css';
 
 export default function CategoryGrid() {
+  const [activeTab, setActiveTab] = useState('all');
+
+  const tabs = [
+    { id: 'all', name: 'All' },
+    ...categories.map(c => ({ id: c.slug, name: c.name })),
+  ];
+
   return (
-    <section className={`section ${styles.section}`} id="categories-section">
+    <section className={styles.section} id="categories-section">
       <div className="container">
-        <div className="section-header">
+        <div className={styles.header}>
           <div>
-            <h2 className="section-title">Shop by Category</h2>
-            <p className="section-subtitle">Find exactly what you&apos;re looking for</p>
+            <h2 className={styles.sectionTitle}>Soko Market</h2>
+            <p className={styles.sectionSubtitle}>Shop by category</p>
           </div>
-          <Link href="/shop" className="view-all-link">
-            View All <ChevronRight size={16} />
-          </Link>
         </div>
-        <div className={`${styles.grid} stagger-children`}>
-          {categories.map((cat) => (
-            <Link key={cat.id} href={`/categories/${cat.slug}`} className={styles.card}>
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={cat.image_url}
-                  alt={cat.name}
-                  width={120}
-                  height={120}
-                  className={styles.image}
-                />
-              </div>
-              <span className={styles.name}>{cat.name}</span>
-            </Link>
-          ))}
+        <div className={styles.tabsWrapper}>
+          <div className={styles.tabs}>
+            {tabs.map((tab) => (
+              <Link
+                key={tab.id}
+                href={tab.id === 'all' ? '/shop' : `/categories/${tab.id}`}
+                className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

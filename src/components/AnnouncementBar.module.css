@@ -1,10 +1,21 @@
 .bar {
-  background: var(--gradient-dark);
+  background: var(--navy-900);
   color: white;
   overflow: hidden;
   height: 36px;
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #000000 33%, #C8102E 33%, #C8102E 66%, #006600 66%);
 }
 
 .marquee {
@@ -16,15 +27,14 @@
   display: flex;
   gap: var(--space-xl);
   white-space: nowrap;
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
   font-size: var(--text-xs);
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .dot {
-  color: var(--primary-400);
+  color: var(--crimson-400);
 }
 
 @keyframes marquee {

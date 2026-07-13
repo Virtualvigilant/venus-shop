@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ShoppingBag, MessageCircle, Heart, Gem, Truck } from 'lucide-react';
+import { ShoppingBag, MessageCircle, Heart, Truck, Phone, Mail, MapPin } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const Instagram = ({ size = 24, className = '' }: { size?: number; className?: string }) => (
@@ -55,46 +55,27 @@ const Twitter = ({ size = 24, className = '' }: { size?: number; className?: str
   </svg>
 );
 
+const TikTok = ({ size = 24, className = '' }: { size?: number; className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      {/* Values Bar */}
-      <div className={styles.valuesBar}>
-        <div className="container">
-          <div className={styles.values}>
-            <div className={styles.value}>
-              <Gem size={22} className={styles.valueIcon} />
-              <div>
-                <span className={styles.valueTitle}>Quality Fabrics</span>
-                <span className={styles.valueText}>Premium materials for lasting style</span>
-              </div>
-            </div>
-            <div className={styles.value}>
-              <Heart size={22} className={styles.valueIcon} />
-              <div>
-                <span className={styles.valueTitle}>Trendy Styles</span>
-                <span className={styles.valueText}>Latest fashion, always in vogue</span>
-              </div>
-            </div>
-            <div className={styles.value}>
-              <Truck size={22} className={styles.valueIcon} />
-              <div>
-                <span className={styles.valueTitle}>Easy Ordering</span>
-                <span className={styles.valueText}>Quick WhatsApp ordering</span>
-              </div>
-            </div>
-            <div className={styles.value}>
-              <MessageCircle size={22} className={styles.valueIcon} />
-              <div>
-                <span className={styles.valueTitle}>24/7 Support</span>
-                <span className={styles.valueText}>We&apos;re always here to help</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer */}
       <div className={styles.main}>
         <div className="container">
@@ -102,39 +83,42 @@ export default function Footer() {
             {/* Brand Column */}
             <div className={styles.brand}>
               <div className={styles.logo}>
-                <ShoppingBag size={24} />
-                <span className={styles.logoText}>Venus</span>
-                <span className={styles.logoAccent}>Shop</span>
+                <div className={styles.logoMark}>
+                  <ShoppingBag size={16} />
+                </div>
+                <div>
+                  <span className={styles.logoText}>Wajose.</span>
+                  <span className={styles.logoTagline}>SMART · WEAR · HOME</span>
+                </div>
               </div>
               <p className={styles.brandText}>
-                Discover your unique style with Venus Shop. We curate the finest fashion pieces 
-                to help you look and feel your best.
+                Where style meets the warmth of home. Curated fashion for the whole family, plus statement carpets and doormats — delivered across Kenya.
               </p>
               <div className={styles.socials}>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Instagram">
+                <a href="https://instagram.com/wajose" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Instagram">
                   <Instagram size={18} />
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Facebook">
+                <a href="https://facebook.com/wajose" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Facebook">
                   <Facebook size={18} />
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Twitter">
+                <a href="https://twitter.com/wajose" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Twitter">
                   <Twitter size={18} />
                 </a>
-                <a href="https://wa.me/2341234567890" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="WhatsApp">
-                  <MessageCircle size={18} />
+                <a href="https://tiktok.com/@wajose" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="TikTok">
+                  <TikTok size={18} />
                 </a>
               </div>
             </div>
 
             {/* Quick Links */}
             <div className={styles.column}>
-              <h4 className={styles.columnTitle}>Quick Links</h4>
+              <h4 className={styles.columnTitle}>Shop</h4>
               <ul className={styles.links}>
-                <li><Link href="/shop">All Products</Link></li>
-                <li><Link href="/categories/dresses">Dresses</Link></li>
-                <li><Link href="/categories/tops">Tops</Link></li>
-                <li><Link href="/categories/shoes">Shoes</Link></li>
+                <li><Link href="/categories/women">Women</Link></li>
+                <li><Link href="/categories/men">Men</Link></li>
+                <li><Link href="/categories/kids">Kids</Link></li>
                 <li><Link href="/categories/accessories">Accessories</Link></li>
+                <li><Link href="/categories/home">Home & Living</Link></li>
               </ul>
             </div>
 
@@ -145,7 +129,8 @@ export default function Footer() {
                 <li><Link href="/contact">Contact Us</Link></li>
                 <li><Link href="/contact">FAQs</Link></li>
                 <li><Link href="/contact">Sizing Guide</Link></li>
-                <li><Link href="/contact">How to Order</Link></li>
+                <li><Link href="/contact">Returns & Exchanges</Link></li>
+                <li><Link href="/contact">Track Your Order</Link></li>
               </ul>
             </div>
 
@@ -154,18 +139,32 @@ export default function Footer() {
               <h4 className={styles.columnTitle}>Get in Touch</h4>
               <ul className={styles.contactList}>
                 <li>
+                  <Phone size={14} />
+                  <a href="tel:+254700000000">+254 700 000 000</a>
+                </li>
+                <li>
                   <MessageCircle size={14} />
-                  <a href="https://wa.me/2341234567890" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer">
                     WhatsApp Us
                   </a>
                 </li>
                 <li>
-                  <Instagram size={14} />
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    @venusshop
-                  </a>
+                  <Mail size={14} />
+                  <a href="mailto:hello@wajose.co.ke">hello@wajose.co.ke</a>
+                </li>
+                <li>
+                  <MapPin size={14} />
+                  <span>Nairobi, Kenya</span>
                 </li>
               </ul>
+              <div className={styles.paymentMethods}>
+                <span className={styles.paymentTitle}>We Accept</span>
+                <div className={styles.paymentIcons}>
+                  <span className={styles.paymentBadge}>M-Pesa</span>
+                  <span className={styles.paymentBadge}>Visa</span>
+                  <span className={styles.paymentBadge}>COD</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -175,9 +174,9 @@ export default function Footer() {
       <div className={styles.bottom}>
         <div className="container">
           <div className={styles.bottomContent}>
-            <p>&copy; {new Date().getFullYear()} Venus Shop. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Wajose. All rights reserved.</p>
             <p className={styles.madeWith}>
-              Made with <Heart size={12} fill="currentColor" className={styles.heartIcon} /> for fashion lovers
+              Made with <Heart size={12} fill="currentColor" className={styles.heartIcon} /> in Kenya 🇰🇪
             </p>
           </div>
         </div>

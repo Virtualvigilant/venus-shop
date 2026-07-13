@@ -58,13 +58,13 @@
 }
 
 .option:hover {
-  background: var(--primary-50);
-  color: var(--primary-600);
+  background: var(--neutral-100);
+  color: var(--navy-700);
 }
 
 .option.active {
-  background: var(--primary-100);
-  color: var(--primary-700);
+  background: var(--navy-100);
+  color: var(--navy-800);
   font-weight: 600;
 }
 
@@ -84,8 +84,8 @@
 }
 
 .mobileToggle:hover {
-  border-color: var(--primary-400);
-  color: var(--primary-600);
+  border-color: var(--navy-400);
+  color: var(--navy-700);
 }
 
 .mobileOverlay {

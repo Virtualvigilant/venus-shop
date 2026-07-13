@@ -2,47 +2,9 @@
   margin-top: auto;
 }
 
-/* Values Bar */
-.valuesBar {
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border-light);
-  border-bottom: 1px solid var(--color-border-light);
-  padding: var(--space-2xl) 0;
-}
-
-.values {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xl);
-}
-
-.value {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.valueIcon {
-  color: var(--primary-600);
-  flex-shrink: 0;
-}
-
-.valueTitle {
-  display: block;
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.valueText {
-  display: block;
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
-}
-
 /* Main Footer */
 .main {
-  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-800) 100%);
+  background: var(--navy-900);
   color: var(--neutral-200);
   padding: var(--space-4xl) 0 var(--space-2xl);
 }
@@ -65,23 +27,38 @@
   margin-bottom: var(--space-lg);
 }
 
+.logoMark {
+  width: 28px;
+  height: 28px;
+  background: var(--crimson-500);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
 .logoText {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 700;
+  font-weight: 900;
+  display: block;
+  line-height: 1;
 }
 
-.logoAccent {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
+.logoTagline {
+  font-size: 7px;
   font-weight: 700;
-  color: var(--primary-300);
+  letter-spacing: 0.2em;
+  color: var(--neutral-400);
+  display: block;
+  margin-top: 2px;
 }
 
 .brandText {
   font-size: var(--text-sm);
   line-height: 1.7;
-  color: var(--neutral-300);
+  color: var(--neutral-400);
   margin-bottom: var(--space-xl);
 }
 
@@ -93,17 +70,17 @@
 .social {
   width: 38px;
   height: 38px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--neutral-300);
+  color: var(--neutral-400);
   transition: all var(--transition-fast);
 }
 
 .social:hover {
-  background: var(--primary-500);
+  background: var(--crimson-500);
   color: white;
   transform: translateY(-2px);
 }
@@ -111,11 +88,11 @@
 .column {}
 
 .columnTitle {
-  font-size: var(--text-sm);
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   margin-bottom: var(--space-lg);
 }
 
@@ -132,7 +109,7 @@
 }
 
 .links a:hover {
-  color: var(--primary-400);
+  color: white;
 }
 
 .contactList {
@@ -149,19 +126,51 @@
   color: var(--neutral-400);
 }
 
-.contactList a {
+.contactList a,
+.contactList span {
   color: var(--neutral-400);
   transition: color var(--transition-fast);
 }
 
 .contactList a:hover {
-  color: var(--primary-400);
+  color: white;
+}
+
+/* Payment Methods */
+.paymentMethods {
+  margin-top: var(--space-xl);
+}
+
+.paymentTitle {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+}
+
+.paymentIcons {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.paymentBadge {
+  padding: 0.2rem 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--neutral-300);
+  letter-spacing: 0.03em;
 }
 
 /* Bottom Bar */
 .bottom {
-  background: #150436;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0a1018;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: var(--space-lg) 0;
 }
 
@@ -170,7 +179,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: var(--text-xs);
-  color: var(--neutral-400);
+  color: var(--neutral-500);
 }
 
 .madeWith {
@@ -180,15 +189,10 @@
 }
 
 .heartIcon {
-  color: var(--rose-500);
+  color: var(--crimson-500);
 }
 
 @media (max-width: 768px) {
-  .values {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
-  }
-
   .grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
@@ -207,10 +211,6 @@
 }
 
 @media (max-width: 480px) {
-  .values {
-    grid-template-columns: 1fr;
-  }
-
   .grid {
     grid-template-columns: 1fr;
   }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Send, Crown } from 'lucide-react';
+import { Send, Heart } from 'lucide-react';
 import styles from './Newsletter.module.css';
 
 export default function Newsletter() {
@@ -23,15 +23,15 @@ export default function Newsletter() {
         <div className={styles.card}>
           <div className={styles.content}>
             <div className={styles.iconWrapper}>
-              <Crown size={28} />
+              <Heart size={28} />
             </div>
-            <h2 className={styles.title}>Join Venus Club</h2>
+            <h2 className={styles.title}>Join the Wajose Family</h2>
             <p className={styles.subtitle}>
-              Get exclusive offers, early access to new arrivals, and styling tips delivered to your inbox.
+              Get exclusive offers, early access to new drops, and styling tips delivered to your inbox. Karibu!
             </p>
             {submitted ? (
               <div className={styles.success}>
-                <span>✨ Welcome to Venus Club! Check your inbox.</span>
+                <span>🎉 Welcome to the family! Check your inbox.</span>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className={styles.form}>

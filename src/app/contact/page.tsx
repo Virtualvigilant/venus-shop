@@ -115,8 +115,8 @@ export default function ContactPage() {
     }
   };
 
-  const whatsappMessage = encodeURIComponent("Hi! I have an inquiry about Venus Shop products.");
-  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '2341234567890'}?text=${whatsappMessage}`;
+  const whatsappMessage = encodeURIComponent("Hi! I have an inquiry about Wajose products.");
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'}?text=${whatsappMessage}`;
 
   return (
     <>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3>Email Support</h3>
-                    <p>hello@venusshop.com</p>
+                    <p>hello@wajose.co.ke</p>
                     <span>Typically responds within 24 hours</span>
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                   <div>
                     <h3>Inquiry Hours</h3>
                     <p>Monday - Saturday</p>
-                    <span>9:00 AM - 7:00 PM (GMT+1)</span>
+                    <span>9:00 AM - 7:00 PM (EAT)</span>
                   </div>
                 </div>
               </div>
@@ -173,13 +173,13 @@ export default function ContactPage() {
               <div className={styles.socialsSection}>
                 <h3>Follow Our Styles</h3>
                 <div className={styles.socialIcons}>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <a href="https://instagram.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <Instagram size={20} />
                   </a>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <a href="https://facebook.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                     <Facebook size={20} />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <a href="https://twitter.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                     <Twitter size={20} />
                   </a>
                 </div>
@@ -206,7 +206,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className={styles.form}>
                     <h2>Send Us a Message</h2>
                     <p className={styles.formSub}>Fill out the form below and we will get back to you.</p>
-
+ 
                     {errorMsg && (
                       <div className={styles.errorMessage}>
                         {errorMsg}
@@ -246,7 +246,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+234..."
+                        placeholder="+254..."
                       />
                     </div>
 

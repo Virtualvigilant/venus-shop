@@ -1,5 +1,5 @@
 .main {
-  padding-top: calc(var(--navbar-height) + 36px + var(--space-3xl));
+  padding-top: calc(var(--topbar-height) + var(--navbar-height) + 40px + 36px + var(--space-3xl));
   padding-bottom: var(--space-4xl);
   min-height: 100vh;
   background-color: var(--color-background);
@@ -23,7 +23,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-primary);
+  color: var(--crimson-500);
   margin-bottom: var(--space-sm);
 }
 
@@ -67,7 +67,7 @@
 a.detailCard:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--color-primary-light);
+  border-color: var(--navy-200);
 }
 
 .iconWrapper {
@@ -76,8 +76,8 @@ a.detailCard:hover {
   justify-content: center;
   width: 48px;
   height: 48px;
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: var(--navy-100);
+  color: var(--navy-700);
   border-radius: var(--radius-lg);
   flex-shrink: 0;
 }
@@ -106,7 +106,7 @@ a.detailCard:hover {
 }
 
 .linkText {
-  color: var(--color-primary) !important;
+  color: var(--crimson-500) !important;
   font-weight: 600;
 }
 
@@ -138,9 +138,9 @@ a.detailCard:hover {
 }
 
 .socialIcons a:hover {
-  background: var(--color-primary);
+  background: var(--crimson-500);
   color: var(--color-surface);
-  border-color: var(--color-primary);
+  border-color: var(--crimson-500);
 }
 
 /* Form Side styling */
@@ -172,13 +172,13 @@ a.detailCard:hover {
 }
 
 .errorMessage {
-  background: rgba(244, 63, 94, 0.1);
-  color: var(--color-error, #f43f5e);
+  background: rgba(200, 16, 46, 0.08);
+  color: var(--crimson-600);
   padding: var(--space-md);
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
   margin-bottom: var(--space-lg);
-  border: 1px solid rgba(244, 63, 94, 0.2);
+  border: 1px solid rgba(200, 16, 46, 0.15);
 }
 
 .inputGroup {
@@ -211,8 +211,8 @@ a.detailCard:hover {
 .inputGroup input:focus,
 .inputGroup textarea:focus {
   outline: none;
-  border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  border-color: var(--navy-400);
+  box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.08);
   background: var(--color-surface);
 }
 
@@ -264,6 +264,10 @@ a.detailCard:hover {
 }
 
 @media (max-width: 768px) {
+  .main {
+    padding-top: calc(var(--navbar-height) + 36px + var(--space-3xl));
+  }
+
   .title {
     font-size: var(--text-3xl);
   }

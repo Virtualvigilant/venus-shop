@@ -5,21 +5,25 @@ export default function AnnouncementBar() {
     <div className={styles.bar}>
       <div className={styles.marquee}>
         <div className={styles.track}>
-          <span>✨ New Collection Just Dropped</span>
+          <span>📦 Delivered countrywide · Karibu Kenya 🇰🇪</span>
           <span className={styles.dot}>•</span>
-          <span>Free Consultation Available</span>
+          <span>💳 We accept M-Pesa & Paybill payments.</span>
           <span className={styles.dot}>•</span>
-          <span>DM us on WhatsApp to Order</span>
+          <span>🔥 Fresh drops every Friday at 12 PM EAT</span>
           <span className={styles.dot}>•</span>
-          <span>Quality Fabrics, Trendy Styles</span>
+          <span>🔄 Enjoy easy 7-day returns on all eligible orders.</span>
           <span className={styles.dot}>•</span>
-          <span>✨ New Collection Just Dropped</span>
+          <span>💬 WhatsApp us anytime</span>
           <span className={styles.dot}>•</span>
-          <span>Free Consultation Available</span>
+          <span>📦 Delivered countrywide · Karibu Kenya 🇰🇪</span>
           <span className={styles.dot}>•</span>
-          <span>DM us on WhatsApp to Order</span>
+          <span>💳 We accept M-Pesa & Paybill payments.</span>
           <span className={styles.dot}>•</span>
-          <span>Quality Fabrics, Trendy Styles</span>
+          <span>🔥 Fresh drops every Friday at 12 PM EAT</span>
+          <span className={styles.dot}>•</span>
+          <span>🔄 Enjoy easy 7-day returns on all eligible orders.</span>
+          <span className={styles.dot}>•</span>
+          <span>💬 WhatsApp us anytime</span>
           <span className={styles.dot}>•</span>
         </div>
       </div>
