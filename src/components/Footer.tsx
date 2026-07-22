@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ShoppingBag, MessageCircle, Heart, Truck, Phone, Mail, MapPin } from 'lucide-react';
+import { ShoppingBag, MessageCircle, Heart, Phone, Mail, MapPin } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const Instagram = ({ size = 24, className = '' }: { size?: number; className?: string }) => (
@@ -72,7 +72,6 @@ const TikTok = ({ size = 24, className = '' }: { size?: number; className?: stri
   </svg>
 );
 
-
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -130,7 +129,7 @@ export default function Footer() {
                 <li><Link href="/contact">FAQs</Link></li>
                 <li><Link href="/contact">Sizing Guide</Link></li>
                 <li><Link href="/contact">Returns & Exchanges</Link></li>
-                <li><Link href="/contact">Track Your Order</Link></li>
+                <li><Link href="/track-order">Track Your Order</Link></li>
               </ul>
             </div>
 
@@ -140,17 +139,17 @@ export default function Footer() {
               <ul className={styles.contactList}>
                 <li>
                   <Phone size={14} />
-                  <a href="tel:+254700000000">+254 700 000 000</a>
+                  <a href="tel:+254701163108">+254701163108</a>
                 </li>
                 <li>
                   <MessageCircle size={14} />
-                  <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/254701163108" target="_blank" rel="noopener noreferrer">
                     WhatsApp Us
                   </a>
                 </li>
                 <li>
                   <Mail size={14} />
-                  <a href="mailto:hello@wajose.co.ke">hello@wajose.co.ke</a>
+                  <a href="mailto:chebetreal@gmail.com">chebetreal@gmail.com</a>
                 </li>
                 <li>
                   <MapPin size={14} />
@@ -161,8 +160,6 @@ export default function Footer() {
                 <span className={styles.paymentTitle}>We Accept</span>
                 <div className={styles.paymentIcons}>
                   <span className={styles.paymentBadge}>M-Pesa</span>
-                  <span className={styles.paymentBadge}>Visa</span>
-                  <span className={styles.paymentBadge}>COD</span>
                 </div>
               </div>
             </div>

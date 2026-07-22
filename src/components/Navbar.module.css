@@ -8,6 +8,22 @@
   flex-direction: column;
 }
 
+/* Toast Banner */
+.toastBanner {
+  background: #111827;
+  color: #fef08a;
+  text-align: center;
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
 /* Top Utility Bar */
 .topBar {
   background: var(--neutral-50);
@@ -190,6 +206,8 @@
   transition: color var(--transition-fast);
   cursor: pointer;
   text-decoration: none;
+  background: transparent;
+  border: none;
 }
 
 .actionBtn:hover {
@@ -203,6 +221,7 @@
 }
 
 .cartBtn {
+  position: relative;
   width: 40px;
   height: 40px;
   display: flex;
@@ -210,6 +229,9 @@
   justify-content: center;
   color: var(--color-text);
   transition: color var(--transition-fast);
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .cartBtn:hover {
@@ -218,10 +240,10 @@
 
 .badge {
   position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 16px;
-  height: 16px;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
   padding: 0 4px;
   display: flex;
   align-items: center;
@@ -231,6 +253,56 @@
   color: white;
   background: var(--crimson-500);
   border-radius: var(--radius-full);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.userMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.userChip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fdfbf7;
+  border: 1px solid #e5e7eb;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.userChip:hover {
+  border-color: #c29b38;
+  color: #c29b38;
+}
+
+.userAvatar {
+  width: 22px;
+  height: 22px;
+  background: #c29b38;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.adminBadge {
+  background: #dc2626;
+  color: white;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 /* Navigation Links Bar */
@@ -345,6 +417,11 @@
 
 .mobileLinks a:hover {
   color: var(--crimson-500);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
 }
 
 @media (max-width: 768px) {

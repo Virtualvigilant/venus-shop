@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
@@ -8,7 +8,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import FilterSidebar from '@/components/FilterSidebar';
-import { products, categories } from '@/lib/data';
+import { categories } from '@/lib/data';
+import { getStoredProducts } from '@/lib/catalog';
+import { Product } from '@/types';
 import styles from './category.module.css';
 
 export default function CategoryPage() {
@@ -18,13 +20,21 @@ export default function CategoryPage() {
 
   const category = categories.find(c => c.slug === slug);
 
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedSort, setSelectedSort] = useState('newest');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
+
+  useEffect(() => {
+    setAllProducts(getStoredProducts());
+    const handleUpdate = () => setAllProducts(getStoredProducts());
+    window.addEventListener('products-updated', handleUpdate);
+    return () => window.removeEventListener('products-updated', handleUpdate);
+  }, []);
 
   const filteredProducts = useMemo(() => {
     if (!category) return [];
 
-    let result = [...products];
+    let result = [...allProducts];
 
     // Filter by category
     if (category.slug === 'sale') {
@@ -52,7 +62,7 @@ export default function CategoryPage() {
     }
 
     return result;
-  }, [category, selectedSort, priceRange]);
+  }, [category, allProducts, selectedSort, priceRange]);
 
   const handleCategoryChange = (newSlug: string) => {
     if (newSlug === 'all') {
@@ -66,7 +76,7 @@ export default function CategoryPage() {
     return (
       <>
         <Navbar />
-        <main className={styles.main}>
+        <main className={styles.main} style={{ paddingTop: '160px' }}>
           <div className="container">
             <div className={styles.notFound}>
               <h1>Category Not Found</h1>
@@ -84,7 +94,7 @@ export default function CategoryPage() {
     <>
       <Navbar />
 
-      <main className={styles.main}>
+      <main className={styles.main} style={{ paddingTop: '160px' }}>
         <div className="container">
           {/* Breadcrumbs */}
           <nav className={styles.breadcrumbs}>

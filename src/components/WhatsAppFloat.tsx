@@ -11,7 +11,7 @@ export default function WhatsAppFloat() {
     <div className={styles.wrapper}>
       <span className={styles.shopLabel}>SHOP</span>
       <a
-        href="https://wa.me/254700000000"
+        href="https://wa.me/254701163108"
         target="_blank"
         rel="noopener noreferrer"
         className={styles.button}

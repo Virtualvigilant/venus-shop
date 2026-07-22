@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -10,27 +13,38 @@ import CollectionCards from '@/components/CollectionCards';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
-import { products } from '@/lib/data';
+import { getStoredProducts } from '@/lib/catalog';
+import { Product } from '@/types';
 
 export default function HomePage() {
-  const newArrivals = products.filter(p => p.is_new_arrival);
-  const bestSellers = products.filter(p => p.is_best_seller);
+  const [productList, setProductList] = useState<Product[]>([]);
+
+  useEffect(() => {
+    setProductList(getStoredProducts());
+    const handleUpdate = () => setProductList(getStoredProducts());
+    window.addEventListener('products-updated', handleUpdate);
+    return () => window.removeEventListener('products-updated', handleUpdate);
+  }, []);
+
+  const newArrivals = productList.filter(p => p.is_new_arrival);
+  const bestSellers = productList.filter(p => p.is_best_seller);
+  const displayProducts = productList.length > 0 ? productList : [];
 
   return (
     <>
       <Navbar />
-      
-      <main>
-        {/* Hero Section — The Soko Edit */}
+
+      <main style={{ paddingTop: '160px' }}>
+        {/* Hero Section */}
         <HeroBanner />
 
-        {/* Trust Band — Fast Delivery, Quality, M-Pesa */}
+        {/* Trust Band */}
         <TrustBand />
 
-        {/* Soko Market Categories */}
+        {/* Categories */}
         <CategoryGrid />
 
-        {/* Flash Deals with Countdown */}
+        {/* Promo Banner */}
         <PromoBanner />
 
         {/* Just For You — New Arrivals */}
@@ -45,7 +59,7 @@ export default function HomePage() {
                 View All <ChevronRight size={16} />
               </Link>
             </div>
-            <ProductGrid products={newArrivals} />
+            <ProductGrid products={newArrivals.length > 0 ? newArrivals : displayProducts} />
           </div>
         </section>
 
@@ -53,20 +67,22 @@ export default function HomePage() {
         <CollectionCards />
 
         {/* Best Sellers */}
-        <section className="section" id="best-sellers-section">
-          <div className="container">
-            <div className="section-header">
-              <div>
-                <h2 className="section-title">Best Sellers</h2>
-                <p className="section-subtitle">Most loved by our customers across Kenya</p>
+        {productList.length > 0 && (
+          <section className="section" id="best-sellers-section">
+            <div className="container">
+              <div className="section-header">
+                <div>
+                  <h2 className="section-title">Best Sellers</h2>
+                  <p className="section-subtitle">Most loved by our customers across Kenya</p>
+                </div>
+                <Link href="/shop?filter=bestseller" className="view-all-link">
+                  View All <ChevronRight size={16} />
+                </Link>
               </div>
-              <Link href="/shop?filter=bestseller" className="view-all-link">
-                View All <ChevronRight size={16} />
-              </Link>
+              <ProductGrid products={bestSellers.length > 0 ? bestSellers : displayProducts} />
             </div>
-            <ProductGrid products={bestSellers} />
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Newsletter */}
         <Newsletter />

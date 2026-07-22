@@ -56,6 +56,7 @@ const Twitter = ({ size = 24, className = '' }: { size?: number; className?: str
     <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
   </svg>
 );
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
@@ -100,9 +101,7 @@ export default function ContactPage() {
 
         if (error) throw error;
       } else {
-        // Fallback simulate submission for preview
         await new Promise(resolve => setTimeout(resolve, 1200));
-        console.log('Mocked inquiry submission (Supabase credentials not set):', formData);
       }
 
       setSuccess(true);
@@ -115,14 +114,14 @@ export default function ContactPage() {
     }
   };
 
-  const whatsappMessage = encodeURIComponent("Hi! I have an inquiry about Wajose products.");
-  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'}?text=${whatsappMessage}`;
+  const whatsappMessage = encodeURIComponent("Hi Venus! I have an inquiry about your products.");
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254701163108'}?text=${whatsappMessage}`;
 
   return (
     <>
       <Navbar />
 
-      <main className={styles.main}>
+      <main className={styles.main} style={{ paddingTop: '160px' }}>
         <div className="container">
           <div className={styles.grid}>
             {/* Info Side */}
@@ -140,7 +139,7 @@ export default function ContactPage() {
                     <MessageCircle size={24} />
                   </div>
                   <div>
-                    <h3>WhatsApp Direct</h3>
+                    <h3>WhatsApp Direct (+254701163108)</h3>
                     <p>Instant answers & quick orders</p>
                     <span className={styles.linkText}>Chat with us now</span>
                   </div>
@@ -152,7 +151,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3>Email Support</h3>
-                    <p>hello@wajose.co.ke</p>
+                    <p>chebetreal@gmail.com</p>
                     <span>Typically responds within 24 hours</span>
                   </div>
                 </div>
@@ -173,13 +172,13 @@ export default function ContactPage() {
               <div className={styles.socialsSection}>
                 <h3>Follow Our Styles</h3>
                 <div className={styles.socialIcons}>
-                  <a href="https://instagram.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <a href="https://instagram.com/venus" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <Instagram size={20} />
                   </a>
-                  <a href="https://facebook.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <a href="https://facebook.com/venus" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                     <Facebook size={20} />
                   </a>
-                  <a href="https://twitter.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <a href="https://twitter.com/venus" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                     <Twitter size={20} />
                   </a>
                 </div>
@@ -206,7 +205,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className={styles.form}>
                     <h2>Send Us a Message</h2>
                     <p className={styles.formSub}>Fill out the form below and we will get back to you.</p>
- 
+
                     {errorMsg && (
                       <div className={styles.errorMessage}>
                         {errorMsg}
@@ -234,7 +233,7 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="jane@example.com"
+                        placeholder="chebetreal@gmail.com"
                       />
                     </div>
 
@@ -246,7 +245,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+254..."
+                        placeholder="+254701163108"
                       />
                     </div>
 

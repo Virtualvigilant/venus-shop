@@ -44,3 +44,49 @@ export interface Inquiry {
   product_id?: string;
   created_at?: string;
 }
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  fullName: string;
+  phone?: string;
+  role: 'customer' | 'admin';
+  createdAt: string;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  selectedSize?: string;
+  selectedColor?: string;
+}
+
+export interface ShippingAddress {
+  fullName: string;
+  phone: string;
+  email: string;
+  addressLine: string;
+  city: string;
+  county: string;
+  notes?: string;
+}
+
+export interface Order {
+  id: string;
+  userId?: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  items: CartItem[];
+  subtotal: number;
+  shippingFee: number;
+  discount: number;
+  total: number;
+  shippingAddress: ShippingAddress;
+  paymentMethod: 'mpesa' | 'card' | 'cod';
+  paymentStatus: 'paid' | 'pending' | 'failed';
+  orderStatus: 'Processing' | 'Dispatched' | 'Delivered' | 'Cancelled';
+  mpesaMessage?: string;
+  mpesaCode?: string;
+  createdAt: string;
+}

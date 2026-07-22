@@ -1,0 +1,319 @@
+.container {
+  min-height: 100vh;
+  background: #fdfbf7;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  padding-top: 160px;
+  padding-bottom: 5rem;
+}
+
+.title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2.5rem;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #c29b38;
+}
+
+.paymentOption {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.paymentOptionActive {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.paymentOptionLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.radio {
+  width: 18px;
+  height: 18px;
+  accent-color: #16a34a;
+}
+
+.payTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.payDesc {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Till Box & Verification Styles */
+.tillCard {
+  background: #ffffff;
+  border: 2px solid #16a34a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+}
+
+.tillHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dcfce7;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tillBadgeGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.tillLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #15803d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tillNumber {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #111827;
+  letter-spacing: 0.08em;
+}
+
+.storeName {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #16a34a;
+  background: #dcfce7;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.instructionsList {
+  font-size: 0.88rem;
+  color: #374151;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.msgPasteArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.msgTextarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.msgTextarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.verifyBadge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.verifySuccess {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.verifyError {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.sidebar {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.75rem;
+  height: fit-content;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.sidebarTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 0.75rem;
+}
+
+.itemMini {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.itemMiniImg {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.itemMiniInfo {
+  flex: 1;
+}
+
+.itemMiniName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.itemMiniQty {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.itemMiniPrice {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.totalBox {
+  border-top: 2px solid #f3f4f6;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.placeOrderBtn {
+  background: #16a34a;
+  color: #ffffff;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25);
+  margin-top: 1.5rem;
+}
+
+.placeOrderBtn:hover {
+  background: #15803d;
+}
+
+.placeOrderBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

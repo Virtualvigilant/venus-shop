@@ -1,17 +1,27 @@
 'use client';
 
-import { useMemo, Suspense } from 'react';
+import { useMemo, useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import FilterSidebar from '@/components/FilterSidebar';
-import { products, categories } from '@/lib/data';
+import { categories } from '@/lib/data';
+import { getStoredProducts } from '@/lib/catalog';
+import { Product } from '@/types';
 import styles from './shop.module.css';
 
 function ShopPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    setAllProducts(getStoredProducts());
+    const handleUpdate = () => setAllProducts(getStoredProducts());
+    window.addEventListener('products-updated', handleUpdate);
+    return () => window.removeEventListener('products-updated', handleUpdate);
+  }, []);
 
   // Read initial states from URL params
   const categoryParam = searchParams.get('category') || 'all';
@@ -62,7 +72,7 @@ function ShopPageContent() {
   };
 
   const filteredProducts = useMemo(() => {
-    let result = [...products];
+    let result = [...allProducts];
 
     // Filter by category
     if (selectedCategory !== 'all') {
@@ -95,17 +105,17 @@ function ShopPageContent() {
     }
 
     return result;
-  }, [selectedCategory, selectedSort, priceRange]);
+  }, [allProducts, selectedCategory, selectedSort, priceRange]);
 
   return (
     <>
-      <main className={styles.main}>
+      <main className={styles.main} style={{ paddingTop: '160px' }}>
         <div className="container">
           {/* Page Header */}
           <div className={styles.header}>
-            <h1 className={styles.title}>Shop All</h1>
+            <h1 className={styles.title}>Shop Catalog</h1>
             <p className={styles.subtitle}>
-              Explore our complete collection of {products.length} curated fashion pieces
+              Explore our complete collection of {allProducts.length} curated products
             </p>
           </div>
 
@@ -119,46 +129,31 @@ function ShopPageContent() {
                 className={styles.filterChip}
                 onClick={() => updateFilters({ category: 'all' })}
               >
-                {categories.find(c => c.slug === selectedCategory)?.name || selectedCategory} ×
+                Category: {selectedCategory} ✕
               </button>
             )}
-            {(priceRange[0] !== 0 || priceRange[1] !== 100000) && (
+            {(priceRange[0] > 0 || priceRange[1] < 100000) && (
               <button
                 className={styles.filterChip}
                 onClick={() => updateFilters({ price: [0, 100000] })}
               >
-                Price Filter ×
+                KSh {priceRange[0]} - KSh {priceRange[1]} ✕
               </button>
             )}
           </div>
 
-          {/* Shop Layout */}
+          {/* Main Layout */}
           <div className={styles.layout}>
             <FilterSidebar
               selectedCategory={selectedCategory}
               onCategoryChange={(cat) => updateFilters({ category: cat })}
-              selectedSort={selectedSort}
-              onSortChange={(sort) => updateFilters({ sort: sort })}
               priceRange={priceRange}
               onPriceChange={(range) => updateFilters({ price: range })}
+              selectedSort={selectedSort}
+              onSortChange={(sort) => updateFilters({ sort })}
             />
-            <div className={styles.productsArea}>
-              {filteredProducts.length === 0 ? (
-                <div className={styles.empty}>
-                  <p>No products found matching your filters.</p>
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => {
-                      updateFilters({ category: 'all', price: [0, 100000] });
-                    }}
-                  >
-                    Clear Filters
-                  </button>
-                </div>
-              ) : (
-                <ProductGrid products={filteredProducts} columns={3} />
-              )}
-            </div>
+
+            <ProductGrid products={filteredProducts} />
           </div>
         </div>
       </main>
@@ -168,20 +163,12 @@ function ShopPageContent() {
 
 export default function ShopPage() {
   return (
-    <>
+    <div className={styles.container}>
       <Navbar />
-      <Suspense fallback={
-        <main className={styles.main}>
-          <div className="container">
-            <div className={styles.empty}>
-              <p>Loading shop catalog...</p>
-            </div>
-          </div>
-        </main>
-      }>
+      <Suspense fallback={<div>Loading catalog...</div>}>
         <ShopPageContent />
       </Suspense>
       <Footer />
-    </>
+    </div>
   );
 }

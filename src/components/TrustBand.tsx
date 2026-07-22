@@ -31,7 +31,7 @@ export default function TrustBand() {
           </div>
           <div>
             <span className={styles.title}>Daily Soko</span>
-            <span className={styles.text}>Up to 60% off</span>
+            <span className={styles.text}>Best Price Guarantee</span>
           </div>
         </div>
         <div className={styles.divider} />

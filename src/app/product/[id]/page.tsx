@@ -1,33 +1,51 @@
 'use client';
 
-import { useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MessageCircle, Heart, ChevronRight, Check, Share2 } from 'lucide-react';
+import { MessageCircle, Heart, ChevronRight, Check, Share2, ShoppingBag, Zap } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductGrid from '@/components/ProductGrid';
 import WishlistButton from '@/components/WishlistButton';
-import { products, formatPrice, getDiscountPercentage } from '@/lib/data';
+import { formatPrice, getDiscountPercentage } from '@/lib/data';
+import { getStoredProducts } from '@/lib/catalog';
+import { Product } from '@/types';
+import { useCart } from '@/context/CartContext';
 import styles from './product.module.css';
 
 export default function ProductPage() {
   const params = useParams();
-  const product = products.find(p => p.id === params.id);
+  const router = useRouter();
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    setAllProducts(getStoredProducts());
+  }, []);
+
+  const product = allProducts.find(p => p.id === params.id);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [activeTab, setActiveTab] = useState('description');
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    if (product) {
+      if (product.sizes.length > 0) setSelectedSize(product.sizes[0]);
+      if (product.colors.length > 0) setSelectedColor(product.colors[0]);
+    }
+  }, [product]);
 
   if (!product) {
     return (
       <>
         <Navbar />
-        <main className={styles.main}>
+        <main className={styles.main} style={{ paddingTop: '160px' }}>
           <div className="container">
             <div className={styles.notFound}>
               <h1>Product Not Found</h1>
-              <p>The product you&apos;re looking for doesn&apos;t exist.</p>
+              <p>The product you&apos;re looking for doesn&apos;t exist or has been updated.</p>
               <Link href="/shop" className="btn btn-primary">Back to Shop</Link>
             </div>
           </div>
@@ -39,18 +57,27 @@ export default function ProductPage() {
 
   const hasDiscount = product.original_price && product.original_price > product.price;
   const discount = hasDiscount ? getDiscountPercentage(product.price, product.original_price!) : 0;
-  const relatedProducts = products.filter(p => p.category_id === product.category_id && p.id !== product.id).slice(0, 4);
+  const relatedProducts = allProducts.filter(p => p.category_id === product.category_id && p.id !== product.id).slice(0, 4);
+
+  const handleAddToCart = () => {
+    addToCart(product, 1, selectedSize, selectedColor);
+  };
+
+  const handleBuyNow = () => {
+    addToCart(product, 1, selectedSize, selectedColor);
+    router.push('/checkout');
+  };
 
   const whatsappMessage = encodeURIComponent(
-    `Hi! I'm interested in ordering the "${product.name}" (${formatPrice(product.price)})${selectedSize ? ` in size ${selectedSize}` : ''}${selectedColor ? `, color: ${selectedColor}` : ''}. Is it available?`
+    `Hi Wajose! I'm interested in ordering the "${product.name}" (${formatPrice(product.price)})${selectedSize ? ` in size ${selectedSize}` : ''}${selectedColor ? `, color: ${selectedColor}` : ''}. Is it available?`
   );
-  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254700000000'}?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254701163108'}?text=${whatsappMessage}`;
 
   return (
     <>
       <Navbar />
 
-      <main className={styles.main}>
+      <main className={styles.main} style={{ paddingTop: '160px' }}>
         <div className="container">
           {/* Breadcrumbs */}
           <nav className={styles.breadcrumbs}>
@@ -77,7 +104,7 @@ export default function ProductPage() {
                   </span>
                 )}
                 <Image
-                  src={product.images[0]}
+                  src={product.images[0] || '/images/product-top.png'}
                   alt={product.name}
                   width={600}
                   height={700}
@@ -94,7 +121,7 @@ export default function ProductPage() {
                  product.category_id === '2' ? 'Men' :
                  product.category_id === '3' ? 'Kids' :
                  product.category_id === '4' ? 'Accessories' :
-                 product.category_id === '5' ? 'Home' : 'Sale'}
+                 product.category_id === '5' ? 'Home' : 'General'}
               </span>
               <h1 className={styles.productName}>{product.name}</h1>
 
@@ -151,29 +178,79 @@ export default function ProductPage() {
                 </div>
               )}
 
-              {/* Actions */}
-              <div className={styles.actions}>
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-whatsapp btn-lg"
-                  id="whatsapp-order-button"
-                  style={{ flex: 1 }}
-                >
-                  <MessageCircle size={20} />
-                  Order via WhatsApp
-                </a>
-                <WishlistButton productId={product.id} />
-                <button className={styles.shareBtn} aria-label="Share">
-                  <Share2 size={18} />
-                </button>
+              {/* Functional Actions */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={!product.in_stock}
+                    style={{
+                      flex: 1,
+                      background: '#111827',
+                      color: '#ffffff',
+                      border: 'none',
+                      padding: '0.9rem',
+                      borderRadius: '8px',
+                      fontWeight: 800,
+                      fontSize: '1rem',
+                      cursor: product.in_stock ? 'pointer' : 'not-allowed',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    <ShoppingBag size={20} />
+                    Add to Bag
+                  </button>
+
+                  <button
+                    onClick={handleBuyNow}
+                    disabled={!product.in_stock}
+                    style={{
+                      flex: 1,
+                      background: '#c29b38',
+                      color: '#ffffff',
+                      border: 'none',
+                      padding: '0.9rem',
+                      borderRadius: '8px',
+                      fontWeight: 800,
+                      fontSize: '1rem',
+                      cursor: product.in_stock ? 'pointer' : 'not-allowed',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    <Zap size={20} />
+                    Buy Now
+                  </button>
+                </div>
+
+                <div className={styles.actions}>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-whatsapp btn-lg"
+                    id="whatsapp-order-button"
+                    style={{ flex: 1 }}
+                  >
+                    <MessageCircle size={20} />
+                    Order via WhatsApp
+                  </a>
+                  <WishlistButton productId={product.id} />
+                  <button className={styles.shareBtn} aria-label="Share">
+                    <Share2 size={18} />
+                  </button>
+                </div>
               </div>
 
               <div className={styles.stockInfo}>
                 {product.in_stock ? (
                   <span className={styles.inStock}>
-                    <Check size={14} /> In Stock
+                    <Check size={14} /> In Stock (Delivered Countrywide)
                   </span>
                 ) : (
                   <span className={styles.outOfStock}>Out of Stock</span>
