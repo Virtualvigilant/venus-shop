@@ -114,8 +114,8 @@ export default function ContactPage() {
     }
   };
 
-  const whatsappMessage = encodeURIComponent("Hi Venus! I have an inquiry about your products.");
-  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254701163108'}?text=${whatsappMessage}`;
+  const whatsappMessage = encodeURIComponent("Hi Wajose! I have an inquiry about your products.");
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '254737680201'}?text=${whatsappMessage}`;
 
   return (
     <>
@@ -130,7 +130,7 @@ export default function ContactPage() {
               <h1 className={styles.title}>We&apos;d Love to Hear From You</h1>
               <p className={styles.description}>
                 Have a question about sizes, styles, or want to make a custom inquiry? 
-                Reach out to us! The easiest way to order is via WhatsApp, but you can also drop us a message here.
+                Reach out to us! The easiest way to order is via WhatsApp, or drop us a message here.
               </p>
 
               <div className={styles.contactDetails}>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                     <MessageCircle size={24} />
                   </div>
                   <div>
-                    <h3>WhatsApp Direct (+254701163108)</h3>
+                    <h3>WhatsApp Direct (0737 680 201)</h3>
                     <p>Instant answers & quick orders</p>
                     <span className={styles.linkText}>Chat with us now</span>
                   </div>
@@ -151,8 +151,19 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3>Email Support</h3>
-                    <p>chebetreal@gmail.com</p>
+                    <p>wajoseeldoret@gmail.com</p>
                     <span>Typically responds within 24 hours</span>
+                  </div>
+                </div>
+
+                <div className={styles.detailCard}>
+                  <div className={styles.iconWrapper}>
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h3>Location</h3>
+                    <p>Eldoret, Kenya 🇰🇪</p>
+                    <span>Countrywide delivery available</span>
                   </div>
                 </div>
 
@@ -172,13 +183,13 @@ export default function ContactPage() {
               <div className={styles.socialsSection}>
                 <h3>Follow Our Styles</h3>
                 <div className={styles.socialIcons}>
-                  <a href="https://instagram.com/venus" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <a href="https://instagram.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <Instagram size={20} />
                   </a>
-                  <a href="https://facebook.com/venus" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <a href="https://facebook.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                     <Facebook size={20} />
                   </a>
-                  <a href="https://twitter.com/venus" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <a href="https://twitter.com/wajose" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                     <Twitter size={20} />
                   </a>
                 </div>
@@ -233,7 +244,7 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="chebetreal@gmail.com"
+                        placeholder="wajoseeldoret@gmail.com"
                       />
                     </div>
 
@@ -245,7 +256,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+254701163108"
+                        placeholder="0737 680 201"
                       />
                     </div>
 

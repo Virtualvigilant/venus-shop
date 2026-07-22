@@ -91,7 +91,7 @@ export default function Footer() {
                 </div>
               </div>
               <p className={styles.brandText}>
-                Where style meets the warmth of home. Curated fashion for the whole family, plus statement carpets and doormats — delivered across Kenya.
+                Where style meets the warmth of home. Curated fashion for the whole family, plus statement carpets and doormats — delivered across Kenya from Eldoret.
               </p>
               <div className={styles.socials}>
                 <a href="https://instagram.com/wajose" target="_blank" rel="noopener noreferrer" className={styles.social} aria-label="Instagram">
@@ -139,21 +139,21 @@ export default function Footer() {
               <ul className={styles.contactList}>
                 <li>
                   <Phone size={14} />
-                  <a href="tel:+254701163108">+254701163108</a>
+                  <a href="tel:+254737680201">0737 680 201</a>
                 </li>
                 <li>
                   <MessageCircle size={14} />
-                  <a href="https://wa.me/254701163108" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/254737680201" target="_blank" rel="noopener noreferrer">
                     WhatsApp Us
                   </a>
                 </li>
                 <li>
                   <Mail size={14} />
-                  <a href="mailto:chebetreal@gmail.com">chebetreal@gmail.com</a>
+                  <a href="mailto:wajoseeldoret@gmail.com">wajoseeldoret@gmail.com</a>
                 </li>
                 <li>
                   <MapPin size={14} />
-                  <span>Nairobi, Kenya</span>
+                  <span>Eldoret, Kenya 🇰🇪</span>
                 </li>
               </ul>
               <div className={styles.paymentMethods}>
@@ -173,7 +173,7 @@ export default function Footer() {
           <div className={styles.bottomContent}>
             <p>&copy; {new Date().getFullYear()} Wajose. All rights reserved.</p>
             <p className={styles.madeWith}>
-              Made with <Heart size={12} fill="currentColor" className={styles.heartIcon} /> in Kenya 🇰🇪
+              Made with <Heart size={12} fill="currentColor" className={styles.heartIcon} /> in Eldoret, Kenya 🇰🇪
             </p>
           </div>
         </div>

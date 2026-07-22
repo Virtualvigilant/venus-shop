@@ -60,13 +60,13 @@ export default function Navbar() {
         <div className={styles.topBar}>
           <div className={`container ${styles.topBarContent}`}>
             <div className={styles.topBarLeft}>
-              <a href="tel:+254701163108" className={styles.topBarItem} style={{ textDecoration: 'none' }}>
+              <a href="tel:+254737680201" className={styles.topBarItem} style={{ textDecoration: 'none' }}>
                 <Phone size={12} />
-                +254701163108
+                0737 680 201
               </a>
               <span className={styles.topBarDivider}>|</span>
               <span className={styles.topBarItem}>
-                📦 Delivered countrywide
+                📦 Delivered countrywide from Eldoret
               </span>
               <span className={styles.topBarDivider}>|</span>
               <span className={styles.topBarItem}>
