@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Heart, Menu, X, ShoppingBag, User, Phone, HelpCircle, MapPin, ChevronDown, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Search, Heart, Menu, X, ShoppingBag, User, Phone, HelpCircle, MapPin, ChevronDown, CheckCircle2, ShieldAlert, LogOut } from 'lucide-react';
 import SearchModal from './SearchModal';
 import AnnouncementBar from './AnnouncementBar';
 import { useAuth } from '@/context/AuthContext';
@@ -15,8 +16,9 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [wishlistCount, setWishlistCount] = useState(0);
 
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { cartCount, openCartDrawer, toastMessage } = useCart();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +39,11 @@ export default function Navbar() {
     window.addEventListener('wishlist-updated', handleWishlistUpdate);
     return () => window.removeEventListener('wishlist-updated', handleWishlistUpdate);
   }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/auth/login');
+  };
 
   return (
     <>
@@ -76,17 +83,28 @@ export default function Navbar() {
                 Track Order
               </Link>
               {user ? (
-                user.role === 'admin' ? (
-                  <Link href="/admin" className={styles.topBarLink} style={{ color: '#ef4444', fontWeight: 800 }}>
-                    <ShieldAlert size={13} />
-                    Admin Portal
-                  </Link>
-                ) : (
-                  <Link href="/account" className={styles.topBarLink}>
-                    <User size={12} />
-                    My Account
-                  </Link>
-                )
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  {user.role === 'admin' ? (
+                    <Link href="/admin" className={styles.topBarLink} style={{ color: '#ef4444', fontWeight: 800 }}>
+                      <ShieldAlert size={13} />
+                      Admin Portal
+                    </Link>
+                  ) : (
+                    <Link href="/account" className={styles.topBarLink}>
+                      <User size={12} />
+                      My Account
+                    </Link>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className={styles.topBarLink}
+                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: '#9ca3af' }}
+                    title="Log out of account"
+                  >
+                    <LogOut size={12} />
+                    Logout
+                  </button>
+                </div>
               ) : (
                 <Link href="/auth/login" className={styles.topBarLink}>
                   <User size={12} />
@@ -165,6 +183,28 @@ export default function Navbar() {
                     <span>{user.fullName.split(' ')[0]}</span>
                     {user.role === 'admin' && <span className={styles.adminBadge}>Admin</span>}
                   </Link>
+
+                  <button
+                    onClick={handleLogout}
+                    style={{
+                      background: '#f3f4f6',
+                      border: '1px solid #e5e7eb',
+                      padding: '0.4rem 0.6rem',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      color: '#4b5563',
+                    }}
+                    title="Sign Out"
+                    id="logout-btn-nav"
+                  >
+                    <LogOut size={14} color="#dc2626" />
+                    Logout
+                  </button>
                 </div>
               ) : (
                 <Link href="/auth/login" className={styles.actionBtn} aria-label="Sign in" id="signin-button">
@@ -274,6 +314,17 @@ export default function Navbar() {
                   <Link href={user.role === 'admin' ? '/admin' : '/account'} onClick={() => setIsMobileMenuOpen(false)}>
                     {user.role === 'admin' ? 'Admin Profile' : 'My Account'}
                   </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      handleLogout();
+                    }}
+                    style={{ background: 'none', border: 'none', color: '#dc2626', fontWeight: 800, padding: 0, cursor: 'pointer', fontSize: '1rem' }}
+                  >
+                    🚪 Sign Out ({user.fullName.split(' ')[0]})
+                  </button>
                 </li>
               </>
             ) : (

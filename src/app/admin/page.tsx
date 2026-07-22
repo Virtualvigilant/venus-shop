@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ShieldAlert, TrendingUp, Package, ShoppingBag, Users, Plus, CheckCircle, Clock } from 'lucide-react';
+import { ShieldAlert, TrendingUp, Package, ShoppingBag, Plus, LogOut } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useAuth } from '@/context/AuthContext';
@@ -11,7 +11,7 @@ import { Order } from '@/types';
 import { products, formatPrice } from '@/lib/data';
 
 export default function AdminDashboardPage() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
 
@@ -23,6 +23,11 @@ export default function AdminDashboardPage() {
       console.error(e);
     }
   }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/auth/login');
+  };
 
   if (!user || user.role !== 'admin') {
     return (
@@ -82,7 +87,7 @@ export default function AdminDashboardPage() {
             </div>
             <h1 style={{ fontSize: '1.8rem', fontWeight: 900, color: '#0f172a' }}>Dashboard & Store Control</h1>
           </div>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <Link
               href="/admin/products"
               style={{
@@ -117,6 +122,24 @@ export default function AdminDashboardPage() {
             >
               <Package size={16} /> Manage Orders ({orders.length})
             </Link>
+            <button
+              onClick={handleLogout}
+              style={{
+                background: '#fef2f2',
+                border: '1px solid #fecaca',
+                color: '#dc2626',
+                padding: '0.75rem 1.25rem',
+                borderRadius: '8px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.9rem',
+              }}
+            >
+              <LogOut size={16} /> Sign Out
+            </button>
           </div>
         </div>
 

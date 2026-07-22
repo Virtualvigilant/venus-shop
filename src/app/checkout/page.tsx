@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Truck, Smartphone, CheckCircle2, MapPin, Lock, AlertCircle, Copy, Check } from 'lucide-react';
+import { Truck, Smartphone, CheckCircle2, MapPin, Lock, AlertCircle, Copy, Check, User, LogIn, UserPlus } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useCart } from '@/context/CartContext';
@@ -26,6 +27,18 @@ export default function CheckoutPage() {
     county: 'Nairobi County',
     notes: 'Please call before delivery',
   });
+
+  // Keep form updated if user state loads or changes
+  useEffect(() => {
+    if (user) {
+      setAddress((prev) => ({
+        ...prev,
+        fullName: prev.fullName || user.fullName,
+        email: prev.email || user.email,
+        phone: prev.phone || user.phone || '',
+      }));
+    }
+  }, [user]);
 
   const [mpesaMessage, setMpesaMessage] = useState('');
   const [copiedTill, setCopiedTill] = useState(false);
@@ -58,6 +71,11 @@ export default function CheckoutPage() {
   const handlePlaceOrder = (e: React.FormEvent) => {
     e.preventDefault();
     setValidationError(null);
+
+    if (!user) {
+      setValidationError('Please sign in or create an account to complete your purchase.');
+      return;
+    }
 
     if (!address.fullName || !address.phone || !address.email) {
       setValidationError('Please fill in your full name, phone number, and email address.');
@@ -120,6 +138,81 @@ export default function CheckoutPage() {
       <main className={`container ${styles.mainContent}`}>
         <h1 className={styles.title}>Checkout & Payment</h1>
 
+        {/* AUTHENTICATION GATE IF NOT SIGNED IN */}
+        {!user && (
+          <div
+            style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '2.5rem 2rem',
+              border: '2px solid #c29b38',
+              marginBottom: '2.5rem',
+              textAlign: 'center',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+            }}
+          >
+            <div
+              style={{
+                width: '64px',
+                height: '64px',
+                background: '#fef3c7',
+                color: '#d97706',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 1.25rem auto',
+              }}
+            >
+              <User size={32} />
+            </div>
+
+            <h2 style={{ fontSize: '1.6rem', fontWeight: 900, color: '#111827', marginBottom: '0.5rem' }}>
+              Sign In Required to Complete Checkout
+            </h2>
+            <p style={{ color: '#6b7280', fontSize: '1rem', maxWidth: '540px', margin: '0 auto 1.75rem auto' }}>
+              Anyone can browse products and add items to cart! To place your order and receive your official receipt & tracking, please sign in or register below.
+            </p>
+
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link
+                href="/auth/login"
+                style={{
+                  background: '#111827',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.75rem',
+                  borderRadius: '8px',
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                }}
+              >
+                <LogIn size={18} />
+                Sign In to Continue
+              </Link>
+              <Link
+                href="/auth/register"
+                style={{
+                  background: '#c29b38',
+                  color: '#ffffff',
+                  padding: '0.85rem 1.75rem',
+                  borderRadius: '8px',
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                }}
+              >
+                <UserPlus size={18} />
+                Create New Account
+              </Link>
+            </div>
+          </div>
+        )}
+
         {validationError && (
           <div
             style={{
@@ -141,7 +234,7 @@ export default function CheckoutPage() {
           </div>
         )}
 
-        <form onSubmit={handlePlaceOrder} className={styles.grid}>
+        <form onSubmit={handlePlaceOrder} className={styles.grid} style={{ opacity: user ? 1 : 0.6, pointerEvents: user ? 'auto' : 'none' }}>
           {/* Main Form Area */}
           <div>
             {/* Shipping Address */}
@@ -159,6 +252,7 @@ export default function CheckoutPage() {
                     value={address.fullName}
                     onChange={(e) => handleInputChange('fullName', e.target.value)}
                     required
+                    disabled={!user}
                   />
                 </div>
 
@@ -170,6 +264,7 @@ export default function CheckoutPage() {
                     value={address.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     required
+                    disabled={!user}
                   />
                 </div>
 
@@ -181,6 +276,7 @@ export default function CheckoutPage() {
                     value={address.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     required
+                    disabled={!user}
                   />
                 </div>
 
@@ -192,6 +288,7 @@ export default function CheckoutPage() {
                     value={address.addressLine}
                     onChange={(e) => handleInputChange('addressLine', e.target.value)}
                     required
+                    disabled={!user}
                   />
                 </div>
 
@@ -203,6 +300,7 @@ export default function CheckoutPage() {
                     value={address.city}
                     onChange={(e) => handleInputChange('city', e.target.value)}
                     required
+                    disabled={!user}
                   />
                 </div>
 
@@ -214,6 +312,7 @@ export default function CheckoutPage() {
                     value={address.county}
                     onChange={(e) => handleInputChange('county', e.target.value)}
                     required
+                    disabled={!user}
                   />
                 </div>
               </div>
@@ -314,6 +413,7 @@ export default function CheckoutPage() {
                     placeholder="e.g. QFH382910K Confirmed. Ksh 3,500.00 sent to Venus on 22/7/26 at 10:55 AM..."
                     value={mpesaMessage}
                     onChange={(e) => setMpesaMessage(e.target.value)}
+                    disabled={!user}
                   ></textarea>
 
                   {mpesaMessage && extractMpesaCode(mpesaMessage) ? (
@@ -378,9 +478,9 @@ export default function CheckoutPage() {
                 <span>{formatPrice(grandTotal)}</span>
               </div>
 
-              <button type="submit" className={styles.placeOrderBtn} disabled={isProcessing}>
+              <button type="submit" className={styles.placeOrderBtn} disabled={isProcessing || !user}>
                 <Lock size={18} />
-                {isProcessing ? 'Verifying M-Pesa Payment...' : `Complete Checkout — ${formatPrice(grandTotal)}`}
+                {!user ? 'Sign In Required to Complete Checkout' : isProcessing ? 'Verifying M-Pesa Payment...' : `Complete Checkout — ${formatPrice(grandTotal)}`}
               </button>
             </div>
           </div>
