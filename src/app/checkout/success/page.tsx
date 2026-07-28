@@ -88,7 +88,7 @@ function SuccessContent() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
             <span>Payment Method:</span>
-            <strong>Lipa na M-Pesa (Till 3132216 - Venus)</strong>
+            <strong>Lipa na M-Pesa (Paybill 300067 - Acc 791 795049)</strong>
           </div>
           {order.mpesaCode && (
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '0.5rem' }}>

@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS public.collections (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- 5. ORDERS TABLE (Supports Lipa na M-Pesa Till 3132216 - Venus)
+-- 5. ORDERS TABLE (Supports Lipa na M-Pesa Paybill 300067 - Acc 791 795049)
 CREATE TABLE IF NOT EXISTS public.orders (
   id TEXT PRIMARY KEY, -- Order Number e.g. WJS-98741
   user_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL,

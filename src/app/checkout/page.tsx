@@ -41,7 +41,8 @@ export default function CheckoutPage() {
   }, [user]);
 
   const [mpesaMessage, setMpesaMessage] = useState('');
-  const [copiedTill, setCopiedTill] = useState(false);
+  const [copiedPaybill, setCopiedPaybill] = useState(false);
+  const [copiedAcc, setCopiedAcc] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
 
@@ -55,10 +56,16 @@ export default function CheckoutPage() {
     setAddress((prev) => ({ ...prev, [field]: val }));
   };
 
-  const handleCopyTill = () => {
-    navigator.clipboard.writeText('3132216');
-    setCopiedTill(true);
-    setTimeout(() => setCopiedTill(false), 2500);
+  const handleCopyPaybill = () => {
+    navigator.clipboard.writeText('300067');
+    setCopiedPaybill(true);
+    setTimeout(() => setCopiedPaybill(false), 2500);
+  };
+
+  const handleCopyAcc = () => {
+    navigator.clipboard.writeText('791795049');
+    setCopiedAcc(true);
+    setTimeout(() => setCopiedAcc(false), 2500);
   };
 
   // Extract M-Pesa transaction code (e.g. QFH382910K)
@@ -355,8 +362,8 @@ export default function CheckoutPage() {
                     className={styles.radio}
                   />
                   <div>
-                    <div className={styles.payTitle}>Lipa na M-Pesa (Buy Goods & Services)</div>
-                    <div className={styles.payDesc}>Till Number: 3132216 (Venus)</div>
+                    <div className={styles.payTitle}>Lipa na M-Pesa (Paybill)</div>
+                    <div className={styles.payDesc}>Paybill: 300067 | Acc: 791 795049</div>
                   </div>
                 </div>
                 <Smartphone size={24} color="#16a34a" />
@@ -365,30 +372,59 @@ export default function CheckoutPage() {
               {/* Lipa na M-Pesa Instructions & Paste Verification Card */}
               <div className={styles.tillCard}>
                 <div className={styles.tillHeader}>
-                  <div className={styles.tillBadgeGroup}>
-                    <span className={styles.tillLabel}>M-PESA BUY GOODS TILL NO.</span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <span className={styles.tillNumber}>3132216</span>
-                      <button
-                        type="button"
-                        onClick={handleCopyTill}
-                        style={{
-                          background: '#e5e7eb',
-                          border: 'none',
-                          padding: '0.35rem 0.6rem',
-                          borderRadius: '6px',
-                          cursor: 'pointer',
-                          fontSize: '0.75rem',
-                          fontWeight: 700,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.3rem',
-                          color: '#374151',
-                        }}
-                      >
-                        {copiedTill ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
-                        {copiedTill ? 'Copied!' : 'Copy Till'}
-                      </button>
+                  <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <div className={styles.tillBadgeGroup}>
+                      <span className={styles.tillLabel}>PAYBILL NO.</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span className={styles.tillNumber}>300067</span>
+                        <button
+                          type="button"
+                          onClick={handleCopyPaybill}
+                          style={{
+                            background: '#e5e7eb',
+                            border: 'none',
+                            padding: '0.35rem 0.6rem',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '0.75rem',
+                            fontWeight: 700,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.3rem',
+                            color: '#374151',
+                          }}
+                        >
+                          {copiedPaybill ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
+                          {copiedPaybill ? 'Copied!' : 'Copy Paybill'}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={styles.tillBadgeGroup}>
+                      <span className={styles.tillLabel}>ACCOUNT NO.</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span className={styles.tillNumber}>791 795049</span>
+                        <button
+                          type="button"
+                          onClick={handleCopyAcc}
+                          style={{
+                            background: '#e5e7eb',
+                            border: 'none',
+                            padding: '0.35rem 0.6rem',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '0.75rem',
+                            fontWeight: 700,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.3rem',
+                            color: '#374151',
+                          }}
+                        >
+                          {copiedAcc ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
+                          {copiedAcc ? 'Copied!' : 'Copy Acc'}
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <span className={styles.storeName}>Venus</span>
@@ -396,8 +432,9 @@ export default function CheckoutPage() {
 
                 <ol className={styles.instructionsList}>
                   <li>Go to M-Pesa menu on your phone or SIM toolkit.</li>
-                  <li>Select <strong>Lipa na M-Pesa</strong> &gt; <strong>Buy Goods and Services</strong>.</li>
-                  <li>Enter Till Number: <strong style={{ color: '#16a34a', fontSize: '1rem' }}>3132216</strong> (Name: <strong>Venus</strong>).</li>
+                  <li>Select <strong>Lipa na M-Pesa</strong> &gt; <strong>Pay Bill</strong>.</li>
+                  <li>Enter Business No. (Paybill): <strong style={{ color: '#16a34a', fontSize: '1rem' }}>300067</strong>.</li>
+                  <li>Enter Account No.: <strong style={{ color: '#16a34a', fontSize: '1rem' }}>791 795049</strong>.</li>
                   <li>Enter Amount: <strong style={{ color: '#111827', fontSize: '1rem' }}>{formatPrice(grandTotal)}</strong>.</li>
                   <li>Enter your M-Pesa PIN and press send.</li>
                   <li>Copy and paste the M-Pesa SMS message you receive into the field below.</li>
